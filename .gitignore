@@ -3,3 +3,13 @@ __pycache__/
 external/
 .ipynb_checkpoints/
 .venv/
+
+# Generated outputs (regenerate via the scripts / pipeline)
+results/
+
+# Exercise/example kept local only (not part of the toolkit repo)
+examples/
+
+# Data: keep the small real-image samples tracked; ignore generated + clean sources
+data/synthetic/
+data/clean/

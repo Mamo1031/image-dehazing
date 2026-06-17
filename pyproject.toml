@@ -1,15 +1,21 @@
 [project]
 name = "image-dehazing"
 version = "0.1.0"
-description = "Single Image Dehazing: Dark Channel Prior baseline and a comparison with DehazeFormer (SOTA)."
+description = "Single image dehazing toolkit: Dark Channel Prior (from scratch) and a DehazeFormer wrapper."
 readme = "README.md"
 requires-python = ">=3.8,<3.11"
 dependencies = [
-    "numpy>=1.24,<2.0",        # torch 1.13 / scikit-image 0.21 require numpy < 2
+    "numpy>=1.24,<2.0",        # scikit-image 0.21 (py3.8) requires numpy < 2
     "opencv-python>=4.10",
     "scikit-image>=0.21",      # pulls scipy; provides PSNR/SSIM
     "matplotlib>=3.7",
     "pillow>=10.0",
+]
+
+[project.optional-dependencies]
+# DehazeFormer (the learning-based method) needs PyTorch; DCP does not, so the
+# core install stays torch-free and works on any platform / CPU-only.
+dehazeformer = [
     "torch==1.13.1",           # resolves to 1.13.1+cu116 via the index below
     "torchvision==0.14.1",
 ]
@@ -17,7 +23,7 @@ dependencies = [
 [tool.uv]
 package = false                # application, not an installable library
 
-# Use the official PyTorch CUDA 11.6 wheels (matches the RTX 3060 setup).
+# Use the official PyTorch CUDA 11.6 wheels for the `dehazeformer` extra.
 [[tool.uv.index]]
 name = "pytorch-cu116"
 url = "https://download.pytorch.org/whl/cu116"

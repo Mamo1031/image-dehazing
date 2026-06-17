@@ -365,6 +365,10 @@ dependencies = [
     { name = "scikit-image", version = "0.21.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.9'" },
     { name = "scikit-image", version = "0.24.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version == '3.9.*'" },
     { name = "scikit-image", version = "0.25.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
+]
+
+[package.optional-dependencies]
+dehazeformer = [
     { name = "torch", version = "1.13.1", source = { registry = "https://download.pytorch.org/whl/cu116" }, marker = "platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux'" },
     { name = "torch", version = "1.13.1+cu116", source = { registry = "https://download.pytorch.org/whl/cu116" }, marker = "platform_machine != 'aarch64' or platform_python_implementation != 'CPython' or sys_platform != 'linux'" },
     { name = "torchvision", version = "0.14.1", source = { registry = "https://download.pytorch.org/whl/cu116" }, marker = "(python_full_version >= '3.10' and sys_platform == 'darwin') or (platform_machine == 'aarch64' and platform_python_implementation == 'CPython' and sys_platform == 'linux') or (platform_machine != 'arm64' and sys_platform == 'darwin')" },
@@ -378,9 +382,10 @@ requires-dist = [
     { name = "opencv-python", specifier = ">=4.10" },
     { name = "pillow", specifier = ">=10.0" },
     { name = "scikit-image", specifier = ">=0.21" },
-    { name = "torch", specifier = "==1.13.1", index = "https://download.pytorch.org/whl/cu116" },
-    { name = "torchvision", specifier = "==0.14.1", index = "https://download.pytorch.org/whl/cu116" },
+    { name = "torch", marker = "extra == 'dehazeformer'", specifier = "==1.13.1", index = "https://download.pytorch.org/whl/cu116" },
+    { name = "torchvision", marker = "extra == 'dehazeformer'", specifier = "==0.14.1", index = "https://download.pytorch.org/whl/cu116" },
 ]
+provides-extras = ["dehazeformer"]
 
 [[package]]
 name = "imageio"
